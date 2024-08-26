@@ -1,52 +1,17 @@
-## Create a course selling website
+### SKILL-FORGE
 
-### Description
-Functionally the same as 03-course-app-medium. Routes are the same as well.
-Rather than storing data in files, store them in MongoDB. 
-We will be covering this in the extra class next week but would be good for you to run ahead.
+## Description:
+This repository contains the backend code for SkillForge, a comprehensive educational course selling platform. It provides a robust and scalable infrastructure for managing courses, users, and transactions.
+The backend is built on a solid foundation of:
+-MongoDB: A flexible NoSQL database that efficiently stores course data, user information, and purchase history. Its schema-less design allows for easy adaptation to evolving requirements.
+-Express.js: A popular Node.js web framework that provides a streamlined and efficient way to handle HTTP requests and responses. Express's modular architecture enables customization and extensibility.
+-JWT (JSON Web Tokens): A secure and standardized method for authenticating users and managing access control. JWTs are used to verify user identity and grant appropriate permissions to protected resources.
+-Middleware: Reusable functions that intercept requests and responses to perform common tasks such as authentication, authorization, logging, and error handling. Middleware helps to improve code organization and maintainability.
 
-## Routes
-### Admin Routes:
- - POST /admin/signup
-   Description: Creates a new admin account.
-   Input: { username: 'admin', password: 'pass' }
-   Output: { message: 'Admin created successfully', token: 'jwt_token_here' }
- - POST /admin/login
-   Description: Authenticates an admin. It requires the admin to send username and password in the headers.
-   Input: Headers: { 'username': 'admin', 'password': 'pass' }
-   Output: { message: 'Logged in successfully', token: 'jwt_token_here' }
- - POST /admin/courses
-   Description: Creates a new course.
-   Input: Headers: { 'Authorization': 'Bearer jwt_token_here' }, Body: { title: 'course title', description: 'course description', price: 100, imageLink: 'https://linktoimage.com', published: true }
-   Output: { message: 'Course created successfully', courseId: 1 }
- - PUT /admin/courses/:courseId
-   Description: Edits an existing course. courseId in the URL path should be replaced with the ID of the course to be edited.
-   Input: Headers: { 'Authorization': 'Bearer jwt_token_here' }, Body: { title: 'updated course title', description: 'updated course description', price: 100, imageLink: 'https://updatedlinktoimage.com', published: false }
-   Output: { message: 'Course updated successfully' }
- - GET /admin/courses
-   Description: Returns all the courses.
-   Input: Headers: { 'Authorization': 'Bearer jwt_token_here' }
-   Output: { courses: [ { id: 1, title: 'course title', description: 'course description', price: 100, imageLink: 'https://linktoimage.com', published: true }, ... ] }
-   User Routes:
+## Features:
+-User Management: Users can register, login, and update their profiles.
+-Course Management: Create, edit, and manage courses with details like title, description, content, price, etc.
+-Enrollment: Users can enroll in courses and access the associated content.
+-Authentication and Authorization: Secure user access with JWT tokens and middleware for authorization checks.
+-Admin Access: Admin login and register is also routed in the application.
 
-### User routes
- - POST /users/signup
-   Description: Creates a new user account.
-   Input: { username: 'user', password: 'pass' }
-   Output: { message: 'User created successfully', token: 'jwt_token_here' }
- - POST /users/login
-   Description: Authenticates a user. It requires the user to send username and password in the headers.
-   Input: Headers: { 'username': 'user', 'password': 'pass' }
-   Output: { message: 'Logged in successfully', token: 'jwt_token_here' }
- - GET /users/courses
-   Description: Lists all the courses.
-   Input: Headers: { 'Authorization': 'Bearer jwt_token_here' }
-   Output: { courses: [ { id: 1, title: 'course title', description: 'course description', price: 100, imageLink: 'https://linktoimage.com', published: true }, ... ] }
- - POST /users/courses/:courseId
-   Description: Purchases a course. courseId in the URL path should be replaced with the ID of the course to be purchased.
-   Input: Headers: { 'Authorization': 'Bearer jwt_token_here' }
-   Output: { message: 'Course purchased successfully' }
- - GET /users/purchasedCourses
-   Description: Lists all the courses purchased by the user.
-   Input: Headers: { 'Authorization': 'Bearer jwt_token_here' }
-   Output: { purchasedCourses: [ { id: 1, title: 'course title', description: 'course description', price: 100, imageLink: 'https://linktoimage.com', published: true }, ... ] }
